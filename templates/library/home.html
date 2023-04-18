@@ -1,0 +1,43 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %}Library | Home page{% endblock title %}
+
+{% block content %}
+<div class="py-3 text-center">
+    <div class="col-md-6 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 fw-normal">Search, Read, Review</h1>
+        <p class="lead fw-normal">Something short and leading about the collection below - its contents, thecreator, etc...</p>
+    </div>
+</div>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            {% for book in books %}
+
+            <div class="col">
+                <a href="{{ book.get_absolute_url }}" class="text-decoration-none text-dark">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ book.image_url }}" class="img-fluid rounded-start" alt="book-cover">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ book.title|truncatechars:40 }}</h5>
+                                    <p class="card-text"><small class="text-muted">{{ book.author }}</small></p>
+                                    <p class="card-text">{{ book.description|truncatechars:80 }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
